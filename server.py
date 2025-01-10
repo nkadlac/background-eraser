@@ -4,8 +4,13 @@ from fastapi.responses import Response
 from rembg import remove
 from PIL import Image
 import io
+import logging
 
 app = FastAPI()
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Add CORS middleware with specific allowed origins
 app.add_middleware(
@@ -22,13 +27,19 @@ app.add_middleware(
     expose_headers=["*"],
 )
 
+@app.get("/")
+async def root():
+    return {"status": "healthy"}
+
 @app.post("/remove-background")
 async def remove_background(file: UploadFile = File(...)):
     try:
+        logger.info(f"Processing file: {file.filename}")
         # Read the image
         contents = await file.read()
         input_image = Image.open(io.BytesIO(contents))
         
+        logger.info("Removing background...")
         # Remove the background
         output_image = remove(input_image)
         
@@ -37,6 +48,8 @@ async def remove_background(file: UploadFile = File(...)):
         output_image.save(img_byte_arr, format='PNG')
         img_byte_arr = img_byte_arr.getvalue()
         
+        logger.info("Successfully processed image")
         return Response(content=img_byte_arr, media_type="image/png")
     except Exception as e:
+        logger.error(f"Error processing image: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e)) 
