@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+
 function App() {
   const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
@@ -70,7 +72,7 @@ function App() {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 60000) // 60 second timeout
 
-      const response = await fetch('http://127.0.0.1:8000/remove-background', {
+      const response = await fetch(`${API_URL}/remove-background`, {
         method: 'POST',
         body: formData,
         signal: controller.signal,
