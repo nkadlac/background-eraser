@@ -129,7 +129,7 @@ function App() {
               Delete Your Background
             </h1>
             <p className="text-gray-400 mt-6">
-              Upload or drop a file to remove<br />a background.
+              Upload or drop a file to remove a background.
             </p>
           </div>
 
