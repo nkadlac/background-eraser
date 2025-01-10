@@ -154,11 +154,11 @@ function App() {
                   htmlFor="file-upload" 
                   className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer"
                 >
-                  <button 
+                  <span 
                     className="bg-yellow-400 text-black font-medium px-8 py-3 rounded-full hover:bg-yellow-300 transition-colors"
                   >
                     Upload image
-                  </button>
+                  </span>
                 </label>
               )}
 
