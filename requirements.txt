@@ -2,8 +2,12 @@ flask==3.0.0
 flask-cors==4.0.0
 python-dotenv==1.0.0
 requests==2.31.0
-u2net==0.8.6
-numpy==1.21.6
-Pillow==9.3.0
-torch==1.13.1
-torchvision==0.14.1 
+rembg==2.0.37
+numpy==1.23.5
+Pillow==9.5.0
+onnxruntime==1.14.1
+pooch==1.7.0
+imagehash==4.3.1
+tqdm==4.65.0
+opencv-python-headless==4.8.0.74
+scipy==1.10.1 
