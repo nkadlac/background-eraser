@@ -116,21 +116,31 @@ function App() {
 
   return (
     <div 
-      className="min-h-screen bg-[#0D0D0D] text-white p-8"
+      className="min-h-screen bg-[#0D0D0D] text-white p-4 md:p-8"
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-12">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col items-start gap-12 lg:gap-24 lg:flex-row lg:items-center justify-between">
           <div>
-            <h1 className="text-5xl font-bold mb-4">Photo<br />Background<br />Remover</h1>
-            <p className="text-gray-400 text-lg">Upload or drop a file to remove<br />a background.</p>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+              Delete Your Background
+            </h1>
+            <p className="text-gray-400 mt-6">
+              Upload or drop a file to remove<br />a background.
+            </p>
           </div>
 
           <div className="flex flex-col w-full lg:w-[600px]">
-            <div className={`mt-8 lg:mt-0 h-[400px] border-2 border-dashed rounded-lg ${isDragging ? 'border-yellow-400 bg-yellow-400/10' : 'border-gray-600'} transition-colors relative`}>
+            <div 
+              className={`
+                w-full aspect-[4/3] border-[3px] border-dashed rounded-2xl
+                ${isDragging ? 'border-yellow-400 bg-yellow-400/10' : 'border-[#444444]'} 
+                transition-colors relative
+              `}
+            >
               <input
                 type="file"
                 accept="image/*"
@@ -142,14 +152,13 @@ function App() {
               {!preview && !processedImage && (
                 <label 
                   htmlFor="file-upload" 
-                  className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer group"
+                  className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer"
                 >
-                  <div 
-                    className="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full group-hover:bg-yellow-300 transition-colors mb-4"
+                  <button 
+                    className="bg-yellow-400 text-black font-medium px-8 py-3 rounded-full hover:bg-yellow-300 transition-colors"
                   >
                     Upload image
-                  </div>
-                  <p className="text-gray-400">or drop an image here</p>
+                  </button>
                 </label>
               )}
 
@@ -175,7 +184,7 @@ function App() {
               {preview && !loading && !processedImage && (
                 <button
                   onClick={removeBackground}
-                  className="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors"
+                  className="px-8 py-3 bg-yellow-400 text-black font-medium rounded-full hover:bg-yellow-300 transition-colors"
                 >
                   Remove Background
                 </button>
@@ -184,7 +193,7 @@ function App() {
               {processedImage && (
                 <button
                   onClick={downloadImage}
-                  className="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors"
+                  className="px-8 py-3 bg-yellow-400 text-black font-medium rounded-full hover:bg-yellow-300 transition-colors"
                 >
                   Download Image
                 </button>
@@ -194,7 +203,7 @@ function App() {
         </div>
 
         {error && (
-          <div className="mb-4 p-4 bg-red-900/50 border border-red-500 rounded-lg">
+          <div className="mt-8 p-4 bg-red-900/50 border border-red-500 rounded-lg">
             <p className="text-red-200">{error}</p>
           </div>
         )}
