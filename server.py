@@ -7,10 +7,14 @@ import io
 
 app = FastAPI()
 
-# Add CORS middleware with more permissive settings for development
+# Add CORS middleware with specific allowed origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # More permissive for development
+    allow_origins=[
+        "http://localhost:5173",  # Local development
+        "https://background-eraser-iny24bggo-nate-kadlacs-projects.vercel.app",  # Vercel production
+        "https://background-eraser-git-master-nate-kadlacs-projects.vercel.app",  # Vercel preview
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
