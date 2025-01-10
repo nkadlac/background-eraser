@@ -5,6 +5,8 @@ from rembg import remove
 from PIL import Image
 import io
 import logging
+import uvicorn
+import os
 
 app = FastAPI()
 
@@ -52,4 +54,8 @@ async def remove_background(file: UploadFile = File(...)):
         return Response(content=img_byte_arr, media_type="image/png")
     except Exception as e:
         logger.error(f"Error processing image: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e)) 
+        raise HTTPException(status_code=500, detail=str(e))
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=True) 
