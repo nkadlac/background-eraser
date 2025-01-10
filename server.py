@@ -13,12 +13,13 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",  # Local development
         "https://bg-delete.vercel.app",  # Vercel production
-        "https://bg-delete-git-master-nate-kadlacs-projects.vercel.app",  # Vercel preview
-        "https://bg-delete.vercel.app",  # Main domain
+        "http://bg-delete.vercel.app",  # Vercel production (http)
+        "https://background-eraser-production.up.railway.app",  # Railway URL
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 @app.post("/remove-background")
