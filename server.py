@@ -12,8 +12,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",  # Local development
-        "https://background-eraser-iny24bggo-nate-kadlacs-projects.vercel.app",  # Vercel production
-        "https://background-eraser-git-master-nate-kadlacs-projects.vercel.app",  # Vercel preview
+        "https://bg-delete.vercel.app",  # Vercel production
+        "https://bg-delete-git-master-nate-kadlacs-projects.vercel.app",  # Vercel preview
+        "https://bg-delete.vercel.app",  # Main domain
     ],
     allow_credentials=True,
     allow_methods=["*"],
